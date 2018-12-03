@@ -1,0 +1,3 @@
+org\apache\solr\handler\dataimport\scheduler\ApplicationListener.class
+org\apache\solr\handler\dataimport\scheduler\HttpPostScheduler.class
+org\apache\solr\handler\dataimport\scheduler\SolrDataImportProperties.class
