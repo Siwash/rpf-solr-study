@@ -68,7 +68,6 @@ public class HttpPostScheduler extends TimerTask {
             logger.info("<index update process> Multiple cores identified in dataimport.properties. Sync active for: " + cores);
         }
     }
-
     private void reloadParams() {
         p.loadProperties(true);
         syncEnabled = p.getProperty(SolrDataImportProperties.SYNC_ENABLED);
@@ -80,7 +79,6 @@ public class HttpPostScheduler extends TimerTask {
         interval    = p.getProperty(SolrDataImportProperties.INTERVAL);
         syncCores   = cores != null ? cores.split(",") : null;
     }
-
     private void fixParams(String webAppName) {
         if (server == null   || server.isEmpty())     server = "localhost";
         if (port == null     || port.isEmpty())       port = "8080";
@@ -186,4 +184,5 @@ public class HttpPostScheduler extends TimerTask {
             return 30; //return default in case of error
         }
     }
+
 }

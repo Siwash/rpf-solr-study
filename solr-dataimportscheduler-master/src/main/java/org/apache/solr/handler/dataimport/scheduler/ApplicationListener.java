@@ -61,21 +61,22 @@ public class ApplicationListener implements ServletContextListener {
         try {
             // create the timer and timer task objects
             Timer timer = new Timer();
+            Timer reBuildTimer=new Timer();
             HttpPostScheduler task = new HttpPostScheduler(servletContext.getServletContextName(), timer);
-
+            HttpReBuildPostScheduler reBuildTask=new HttpReBuildPostScheduler(servletContext.getServletContextName(), reBuildTimer);
             // get our interval from HTTPPostScheduler
             int interval = task.getIntervalInt();
-
+            int rebuildInterval=reBuildTask.getIntervalInt();
             // get a calendar to set the start time (first run)
             Calendar calendar = Calendar.getInstance();
-
+            Calendar reBuildCalendar=Calendar.getInstance();
             // set the first run to now + interval (to avoid fireing while the app/server is starting)
             calendar.add(Calendar.MINUTE, interval);
             Date startTime = calendar.getTime();
-
+            reBuildCalendar.add(Calendar.MINUTE,rebuildInterval);
             // schedule the task
             timer.scheduleAtFixedRate(task, startTime, 1000 * 60 * interval);
-
+            reBuildTimer.scheduleAtFixedRate(reBuildTask,reBuildCalendar.getTime(),1000*60*rebuildInterval);
             // save the timer in context
             servletContext.setAttribute("timer", timer);
     

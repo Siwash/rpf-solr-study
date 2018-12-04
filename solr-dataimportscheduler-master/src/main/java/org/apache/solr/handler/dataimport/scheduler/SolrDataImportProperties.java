@@ -40,6 +40,8 @@ public class SolrDataImportProperties {
     public static final String WEBAPP       = "webapp";
     public static final String PARAMS       = "params";
     public static final String INTERVAL     = "interval";
+    public static final String ReBuildINTERVAL     = "reBuildIndexInterval";
+    public static final String ReBuildParams     = "reBuildIndexParams";
 
     private static final Logger logger = LoggerFactory.getLogger(SolrDataImportProperties.class);
 
